@@ -1,3 +1,8 @@
+# This view will handle requests to your home page.
+
+# Replace Place.objects.get() with a call to Django convenience
+# function get_object_or_404, below .
+
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Place
 from .forms import NewPlaceForm
@@ -7,22 +12,20 @@ from .forms import NewPlaceForm
 def place_list(request):
 
     if request.method == 'POST':
-        #Create new place
-        form = NewPlaceForm(request.POST) #creating a form from data 
-        place = form.save()  #creating a model object from form
-        if form.is_valid():  # validation against DB constraints
-            place.save()  # saves place to db
-            return redirect('place_list') # reloads home page.
+        # create new place
+        form = NewPlaceForm(request.POST)  # creating a form from data in the request
+        place = form.save() # creating a model object from form 
+        if form.is_valid(): # validation againts DB constraints
+            place.save()  # saves places to db
+            return redirect('place_list')  # reloads home page.
 
-
-    places = Place.objects.filter(visited=False).order_by('name')
-    new_place_form = NewPlaceForm() #used to create HTML
+    places = Place.objects.filter(visited=False).order_by('name') # filter only the False and by name in order.
+    new_place_form = NewPlaceForm()
     return render(request, 'travel_wishlist/wishlist.html', {'places': places, 'new_place_form': new_place_form})
-
 
 def places_visited(request):
     visited = Place.objects.filter(visited=True)
-    return render(request, 'travel_wishlist/visited.html', {'visited': visited})
+    return render(request, 'travel_wishlist/visited.html', { 'visited': visited})
 
 def place_was_visited(request, place_pk):
     if request.method == 'POST':

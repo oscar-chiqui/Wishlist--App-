@@ -1,0 +1,37 @@
+span.place-name {
+    display: inline-block;
+    width: 70%;
+
+}
+/* display:inline display puts the Visited
+button on the same line as the place
+name */
+
+/* display:inline-block does the same as
+inline, but also has ability to set width */
+form.visited-form {
+    display: inline;
+}
+
+/* Margin and padding are for adding
+spacing around elements */
+div.wishlist-place {
+    margin: 20px;
+}
+
+label {
+    display: inline-block;
+    padding-right: 8px;
+}
+
+a.nav-link {
+    margin-right: 10px;
+}
+
+/* Change the color of the #addnewplace button
+to differentiate it from the visited buttons */
+
+#add-new-place {
+    background-color: orange;
+    border: darkgreen;
+}
